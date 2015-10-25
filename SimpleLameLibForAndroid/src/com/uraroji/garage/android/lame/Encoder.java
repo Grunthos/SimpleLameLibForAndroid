@@ -20,12 +20,18 @@
 
 package com.uraroji.garage.android.lame;
 
+import android.util.Log;
+
 /**
  * LAME interface class.
  * 
  * This class is object-oriented interface.
  */
 public class Encoder {
+    static {
+        System.loadLibrary("mp3lame");
+        //Log.d(TAG, "Loaded native library.");
+    }
 
     /**
      * Lame builder class.
