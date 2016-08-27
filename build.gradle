@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 24
+    buildToolsVersion '24.0.1'
+
+//    packagingOptions {
+//        exclude 'src/main/jnilibs/arm64-v8a/*'
+//        exclude 'src/main/jnilibs/mips64/*'
+//        exclude 'src/main/jnilibs/x86_64/*'
+//        exclude 'jnilibs/arm64-v8a/*'
+//        exclude 'jnilibs/mips64/*'
+//        exclude 'jnilibs/x86_64/*'
+//        exclude 'lib/arm64-v8a/*'
+//        exclude 'lib/mips64/*'
+//        exclude 'lib/x86_64/*'
+//    }
+
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 7
+
+        externalNativeBuild {
+            ndkBuild {
+                arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS22\\simpleLameLibForAndroid\\src\\main\\jni"
+                arguments "NDK_APPLICATION_MK:=Application.mk"
+                arguments "APP_PROJECT_PATH=src\\main\\jni"
+                arguments "NDK_PROJECT_PATH=src\\main\\jni"
+//                cFlags "-DTEST_C_FLAG1"  "-DTEST_C_FLAG2"
+//                cppFlags "-DTEST_CPP_FLAG2"  "-DTEST_CPP_FLAG2"
+//                abiFilters "armeabi-v7a", "armeabi"
+            }
+        }
+
+        //ndk {
+        //    moduleName "mp3lame"
+        //}
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file("src\\main\\jni\\Android.mk")
+            //arguments "NDK_PROJECT_PATH:=src\\main"
+        }
+    }
+}
+
+dependencies {
+}

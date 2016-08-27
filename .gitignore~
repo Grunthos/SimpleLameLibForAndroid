@@ -7,5 +7,4 @@
 /build/
 .~lock*
 *.iml
-externalNativeBuild
 .externalNativeBuild
