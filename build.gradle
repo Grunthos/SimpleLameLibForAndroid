@@ -1,4 +1,22 @@
 apply plugin: 'com.android.library'
+apply from: "c:\\cygwin64\\home\\pjw\\java\\Libraries\\scripts\\local_publish.gradle"
+
+publishing {
+    publications {
+        aarFile(MavenPublication) {
+            version = '1.0'
+            groupId = 'net.philipwarner.platforms.android.lamemp3'
+
+            artifact(androidSourceJar)
+            artifact("$buildDir/outputs/aar/simpleLameLibForAndroid-release.aar")
+            pom.withXml {
+                addPomDependencies(asNode())
+            }
+        }
+    }
+}
+
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
