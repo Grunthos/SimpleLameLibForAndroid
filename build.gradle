@@ -21,7 +21,7 @@ android {
 
         externalNativeBuild {
             ndkBuild {
-                arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS22\\simpleLameLibForAndroid\\src\\main\\jni"
+                arguments "--directory=src\\main\\jni"
                 arguments "NDK_APPLICATION_MK:=Application.mk"
                 arguments "APP_PROJECT_PATH=src\\main\\jni"
                 arguments "NDK_PROJECT_PATH=src\\main\\jni"
