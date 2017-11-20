@@ -4,7 +4,7 @@ apply from: "c:\\cygwin64\\home\\pjw\\java\\Libraries\\scripts\\local_publish.gr
 publishing {
     publications {
         aarFile(MavenPublication) {
-            version = '1.0'
+            version = '1.1'
             groupId = 'net.philipwarner.platforms.android.lamemp3'
 
             artifact(androidSourceJar)
@@ -18,20 +18,28 @@ publishing {
 
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
-//    packagingOptions {
+    packagingOptions {
+//        exclude 'src/main/jnilibs/armeabi-v7a/*'
 //        exclude 'src/main/jnilibs/arm64-v8a/*'
 //        exclude 'src/main/jnilibs/mips64/*'
 //        exclude 'src/main/jnilibs/x86_64/*'
+//        exclude 'src/main/jnilibs/x86/*'
+
+//        exclude 'jnilibs/armeabi-v7a/*'
 //        exclude 'jnilibs/arm64-v8a/*'
 //        exclude 'jnilibs/mips64/*'
 //        exclude 'jnilibs/x86_64/*'
+//        exclude 'jnilibs/x86/*'
+//
+//        exclude 'lib/armeabi-v7a/*'
 //        exclude 'lib/arm64-v8a/*'
 //        exclude 'lib/mips64/*'
 //        exclude 'lib/x86_64/*'
-//    }
+//        exclude 'lib/x86/*'
+    }
 
     defaultConfig {
         minSdkVersion 7
@@ -39,13 +47,14 @@ android {
 
         externalNativeBuild {
             ndkBuild {
+//                path "src/main/jni"
                 arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS22\\simpleLameLibForAndroid\\src\\main\\jni"
                 arguments "NDK_APPLICATION_MK:=Application.mk"
                 arguments "APP_PROJECT_PATH=src\\main\\jni"
                 arguments "NDK_PROJECT_PATH=src\\main\\jni"
 //                cFlags "-DTEST_C_FLAG1"  "-DTEST_C_FLAG2"
 //                cppFlags "-DTEST_CPP_FLAG2"  "-DTEST_CPP_FLAG2"
-//                abiFilters "armeabi-v7a", "armeabi"
+                abiFilters "armeabi-v7a", "armeabi", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
             }
         }
 
@@ -65,6 +74,10 @@ android {
             //arguments "NDK_PROJECT_PATH:=src\\main"
         }
     }
+//    sourceSets.main {
+//        jniLibs.srcDir 'src/main/jnilibs'
+//        jni.srcDirs = [] //disable automatic ndk-build call
+//    }
 }
 
 dependencies {
