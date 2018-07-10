@@ -19,7 +19,7 @@ publishing {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     packagingOptions {
 //        exclude 'src/main/jnilibs/armeabi-v7a/*'
@@ -54,7 +54,8 @@ android {
                 arguments "NDK_PROJECT_PATH=src\\main\\jni"
 //                cFlags "-DTEST_C_FLAG1"  "-DTEST_C_FLAG2"
 //                cppFlags "-DTEST_CPP_FLAG2"  "-DTEST_CPP_FLAG2"
-                abiFilters "armeabi-v7a", "armeabi", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+//                abiFilters "armeabi-v7a", "armeabi", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
             }
         }
 
