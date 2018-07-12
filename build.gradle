@@ -1,10 +1,20 @@
 apply plugin: 'com.android.library'
 apply from: "c:\\cygwin64\\home\\pjw\\java\\Libraries\\scripts\\local_publish.gradle"
 
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+    }
+}
+
 publishing {
     publications {
         aarFile(MavenPublication) {
-            version = '1.1'
+            version = '1.2'
             groupId = 'net.philipwarner.platforms.android.lamemp3'
 
             artifact(androidSourceJar)
@@ -18,7 +28,7 @@ publishing {
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     packagingOptions {
@@ -42,20 +52,25 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 7
+        minSdkVersion 14
+        targetSdkVersion 26
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
 
         externalNativeBuild {
             ndkBuild {
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
 //                path "src/main/jni"
-                arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS22\\simpleLameLibForAndroid\\src\\main\\jni"
+                                //C:\cygwin64\home\pjw\java\FieldAssistantAS3\simpleLameLibForAndroid\src\main\jni
+                arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
+                //arguments "NDK_PROJECT_PATH=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
                 arguments "NDK_APPLICATION_MK:=Application.mk"
                 arguments "APP_PROJECT_PATH=src\\main\\jni"
                 arguments "NDK_PROJECT_PATH=src\\main\\jni"
 //                cFlags "-DTEST_C_FLAG1"  "-DTEST_C_FLAG2"
 //                cppFlags "-DTEST_CPP_FLAG2"  "-DTEST_CPP_FLAG2"
-//                abiFilters "armeabi-v7a", "armeabi", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
-                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
             }
         }
 
@@ -63,6 +78,19 @@ android {
         //    moduleName "mp3lame"
         //}
     }
+
+//    buildTypes {
+//        debug {
+//            ndk {
+//                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+//            }
+//        }
+//        release {
+//            ndk {
+//                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+//            }
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -72,9 +100,16 @@ android {
     externalNativeBuild {
         ndkBuild {
             path file("src\\main\\jni\\Android.mk")
-            //arguments "NDK_PROJECT_PATH:=src\\main"
+//            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+//            arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
+//            arguments "NDK_APPLICATION_MK:=Application.mk"
+//            arguments "APP_PROJECT_PATH=src\\main\\jni"
+//            arguments "NDK_PROJECT_PATH=src\\main\\jni"
+//
+//            //arguments "NDK_PROJECT_PATH:=src\\main"
         }
     }
+
 //    sourceSets.main {
 //        jniLibs.srcDir 'src/main/jnilibs'
 //        jni.srcDirs = [] //disable automatic ndk-build call
