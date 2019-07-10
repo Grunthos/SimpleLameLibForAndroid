@@ -3,8 +3,8 @@ apply from: "c:\\cygwin64\\home\\pjw\\java\\Libraries\\scripts\\local_publish.gr
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
