@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: "c:\\cygwin64\\home\\pjw\\java\\Libraries\\scripts\\local_publish.gradle"
+apply from: "${LibrariesRootPath}\\scripts\\local_publish.gradle"
 
 buildscript {
     repositories {
@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 
@@ -30,6 +30,7 @@ publishing {
 android {
     compileSdkVersion 27
     buildToolsVersion '28.0.3'
+    android.ndkVersion '17.2.4988734'
 
     packagingOptions {
 //        exclude 'src/main/jnilibs/armeabi-v7a/*'
@@ -64,7 +65,7 @@ android {
                 abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
 //                path "src/main/jni"
                                 //C:\cygwin64\home\pjw\java\FieldAssistantAS3\simpleLameLibForAndroid\src\main\jni
-                arguments "--directory=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
+                arguments "--directory=c:\\cygwin64\\root\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
                 //arguments "NDK_PROJECT_PATH=c:\\cygwin64\\home\\pjw\\java\\FieldAssistantAS3\\simpleLameLibForAndroid\\src\\main\\jni"
                 arguments "NDK_APPLICATION_MK:=Application.mk"
                 arguments "APP_PROJECT_PATH=src\\main\\jni"
